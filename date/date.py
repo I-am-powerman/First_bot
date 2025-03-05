@@ -15,9 +15,6 @@ class Date:
     def getTime(self):
         return self.time
 
-    # def validateStart_date(self, start_date):
-    #     if start_date == "not_valid":
-    # Exception
 
     def getPassedDays(self):
         # some cool code
