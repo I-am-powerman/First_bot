@@ -5,3 +5,5 @@ class date:
         pass
     def date(self):
         pass
+    def date(self):
+        pass
