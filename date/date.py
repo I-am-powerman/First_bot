@@ -23,7 +23,8 @@ class Date:
             self.days = days
             raise ValueError("Дата не входит в допустимые границы")
 
-    def _verification_of_high_year(self, year): # проверка на високосный год
+    @staticmethod
+    def _verification_of_high_year(year: int): # проверка на високосный год
         last_num_year = year % 10
         if year // 400 == 0:
             return True
@@ -41,9 +42,9 @@ class Date:
             return days + 1
         else:
             return days
-
-    def _num_all_days_year(self, year): # кол. дней в году
-        if self._verification_of_high_year(year):
+    @staticmethod
+    def _num_all_days_year(year: int): # кол. дней в году
+        if Date._verification_of_high_year(year):
             return 366
         else:
             return 365
