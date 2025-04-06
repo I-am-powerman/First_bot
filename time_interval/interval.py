@@ -6,5 +6,4 @@ class Interval:
         self.date_2 = date_2
 
     def interval(self) -> int:
-        
-        return self.date_2.days_passed_zero_point() - self.date_1.days_passed_zero_point()
+        return self.date_2.all_days - self.date_1.all_days
