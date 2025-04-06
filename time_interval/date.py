@@ -3,7 +3,7 @@ class Date:
         self.time: str = time
         [year, month, days] = self._parse_date(time)
         self._validation(year, month, days)
-        all_days = self._days_zero_point(year, month, days)
+        all_days = self._days_zero_point(0, year, 0, month, days)
         self.all_days: int = all_days
 
 
@@ -14,21 +14,33 @@ class Date:
         return self._return_time(self.all_days)
 
     def add_month(self, month: int):
-        pass
+        yers_def = int(self.time.split("-")[0])
+        month_zero = int(self.time.split("-")[1])
+        month_post = month_zero + month
+        days_month = self._days_zero_point(yers_def, yers_def, month_zero, month_post, 0)
+        self.all_days += days_month
+
+        return self._return_time(self.all_days)
 
     def add_years(self, year: int) -> int:
-        pass
+        
+        return self._return_time(self.all_days)
 
-    def _days_zero_point(self, year: int, month: int, days: int,
+
+    def _days_zero_point(self, zero_point_year: int, year: int,zero_point_month: int, month: int, days: int,
     ) -> int:  
         all_days = 0
-
-        all_days += days
-
-        for i in range(1, month):
+        if zero_point_year == 0:
+            all_days += days
+        while month > 12:
+            year += 1
+            month -= 12
+        if zero_point_month > 0:
+            month += 1
+        for i in range(zero_point_month + 1, month):
             all_days += self._days_month(i, year)
 
-        for i in range(0, year):
+        for i in range(zero_point_year, year):
             all_days += self._days_year(i)
 
         return all_days
